@@ -24,9 +24,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (ListBrandS)] action in HomePage widget.
+  // Stores action output result for [Backend Call - API (List BrandS)] action in HomePage widget.
   ApiCallResponse? apiBranS;
-  // Stores action output result for [Backend Call - API (ListCarS)] action in HomePage widget.
+  // Stores action output result for [Backend Call - API (List CarS)] action in HomePage widget.
   ApiCallResponse? apiCarS;
   // State field(s) for Carousel widget.
   CarouselController? carouselController;

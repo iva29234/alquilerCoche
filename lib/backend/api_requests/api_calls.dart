@@ -300,36 +300,74 @@ class GetMarcasByIDCopyCall {
 
 /// End ApiMaster Group Code
 
-/// Start CochesApi Group Code
+/// Start FlutterFlow + PostgreSQL ApiFlow API Group Code
 
-class CochesApiGroup {
+class FlutterFlowPostgreSQLApiFlowAPIGroup {
   static String getBaseUrl() =>
-      'https://alpprlrzrxtopoesljvo.supabase.co/rest/v1/';
+      'https://gw.apiflow.online/api/a662bde7143b4afaa662abe7e0258ba1';
   static Map<String, String> headers = {
-    'apikey':
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFscHBybHJ6cnh0b3BvZXNsanZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU1MzAyMTgsImV4cCI6MjAzMTEwNjIxOH0.1dQB7FqoG0_McHwjghOxu-K8FWYwhA8KE0o8IWltT5k',
     'Authorization':
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFscHBybHJ6cnh0b3BvZXNsanZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU1MzAyMTgsImV4cCI6MjAzMTEwNjIxOH0.1dQB7FqoG0_McHwjghOxu-K8FWYwhA8KE0o8IWltT5k',
+        'Bearer YTMxYmY0NmVlOTU1MmYyZWJjZDEzNzM3OGI1NTVmZjU6Y2I2NmY3ZWIxNmM1MDlhNzI2YzJmMjExNGQ0NDM3MzM=',
   };
   static ListBrandSCall listBrandSCall = ListBrandSCall();
+  static CreateNewBrandSCall createNewBrandSCall = CreateNewBrandSCall();
   static ListCarSCall listCarSCall = ListCarSCall();
+  static CreateNewCarSCall createNewCarSCall = CreateNewCarSCall();
 }
 
 class ListBrandSCall {
-  Future<ApiCallResponse> call() async {
-    final baseUrl = CochesApiGroup.getBaseUrl();
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    String? orderby = '',
+    int? offset,
+    int? limit,
+  }) async {
+    final baseUrl = FlutterFlowPostgreSQLApiFlowAPIGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
-      callName: 'ListBrandS',
-      apiUrl: '${baseUrl}BrandS?select=*',
+      callName: 'List BrandS',
+      apiUrl: '$baseUrl/table/public.BrandS',
       callType: ApiCallType.GET,
       headers: {
-        'apikey':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFscHBybHJ6cnh0b3BvZXNsanZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU1MzAyMTgsImV4cCI6MjAzMTEwNjIxOH0.1dQB7FqoG0_McHwjghOxu-K8FWYwhA8KE0o8IWltT5k',
         'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFscHBybHJ6cnh0b3BvZXNsanZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU1MzAyMTgsImV4cCI6MjAzMTEwNjIxOH0.1dQB7FqoG0_McHwjghOxu-K8FWYwhA8KE0o8IWltT5k',
+            'Bearer YTMxYmY0NmVlOTU1MmYyZWJjZDEzNzM3OGI1NTVmZjU6Y2I2NmY3ZWIxNmM1MDlhNzI2YzJmMjExNGQ0NDM3MzM=',
+      },
+      params: {
+        'filter': filter,
+        'orderby': orderby,
+        'offset': offset,
+        'limit': limit,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CreateNewBrandSCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = FlutterFlowPostgreSQLApiFlowAPIGroup.getBaseUrl();
+
+    const ffApiRequestBody = '''
+{
+  "id": 1,
+  "name": "Testa",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Tesla_T_symbol.svg/640px-Tesla_T_symbol.svg.png"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Create new BrandS',
+      apiUrl: '$baseUrl/table/public.BrandS',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization':
+            'Bearer YTMxYmY0NmVlOTU1MmYyZWJjZDEzNzM3OGI1NTVmZjU6Y2I2NmY3ZWIxNmM1MDlhNzI2YzJmMjExNGQ0NDM3MzM=',
       },
       params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -340,20 +378,28 @@ class ListBrandSCall {
 }
 
 class ListCarSCall {
-  Future<ApiCallResponse> call() async {
-    final baseUrl = CochesApiGroup.getBaseUrl();
+  Future<ApiCallResponse> call({
+    String? filter = '',
+    String? orderby = '',
+    int? offset,
+    int? limit,
+  }) async {
+    final baseUrl = FlutterFlowPostgreSQLApiFlowAPIGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
-      callName: 'ListCarS',
-      apiUrl: '${baseUrl}CarS?',
+      callName: 'List CarS',
+      apiUrl: '$baseUrl/table/public.CarS',
       callType: ApiCallType.GET,
       headers: {
-        'apikey':
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFscHBybHJ6cnh0b3BvZXNsanZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU1MzAyMTgsImV4cCI6MjAzMTEwNjIxOH0.1dQB7FqoG0_McHwjghOxu-K8FWYwhA8KE0o8IWltT5k',
         'Authorization':
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFscHBybHJ6cnh0b3BvZXNsanZvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTU1MzAyMTgsImV4cCI6MjAzMTEwNjIxOH0.1dQB7FqoG0_McHwjghOxu-K8FWYwhA8KE0o8IWltT5k',
+            'Bearer YTMxYmY0NmVlOTU1MmYyZWJjZDEzNzM3OGI1NTVmZjU6Y2I2NmY3ZWIxNmM1MDlhNzI2YzJmMjExNGQ0NDM3MzM=',
       },
-      params: {},
+      params: {
+        'filter': filter,
+        'orderby': orderby,
+        'offset': offset,
+        'limit': limit,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -363,7 +409,40 @@ class ListCarSCall {
   }
 }
 
-/// End CochesApi Group Code
+class CreateNewCarSCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = FlutterFlowPostgreSQLApiFlowAPIGroup.getBaseUrl();
+
+    const ffApiRequestBody = '''
+{
+  "id": 1,
+  "name": "Tesla1",
+  "main_image": "https://cdn.motor1.com/images/mgl/Mk3qg6/s1/2017-tesla-roadster-deck-model-petersen-automotive-museum.webp",
+  "brand": 1,
+  "rent": 99,
+  "price": 20000
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Create new CarS',
+      apiUrl: '$baseUrl/table/public.CarS',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization':
+            'Bearer YTMxYmY0NmVlOTU1MmYyZWJjZDEzNzM3OGI1NTVmZjU6Y2I2NmY3ZWIxNmM1MDlhNzI2YzJmMjExNGQ0NDM3MzM=',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+/// End FlutterFlow + PostgreSQL ApiFlow API Group Code
 
 class ApiPagingParams {
   int nextPageNumber = 0;
